@@ -6,6 +6,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import java.util.List;
+
+
 
 @SpringBootApplication
 public class SpringBootDemoApplication {
@@ -19,8 +22,23 @@ public class SpringBootDemoApplication {
         return runner -> {
 //			createStudent(studentDAO);
 
-            readStudent(studentDAO);
+//            readStudent(studentDAO);
+
+            queryForStudents(studentDAO);
         };
+    }
+
+    private void queryForStudents(StudentDAO studentDAO) {
+        Student student1 = new Student("Ram", "Rama", "ram@gmail.com");
+        studentDAO.save(student1);
+
+        Student student2 = new Student("Ram 2", "Rama 2", "ram2@gmail.com");
+        studentDAO.save(student2);
+
+        List<Student> theStudents = studentDAO.findAll();
+        for(Student theStudent: theStudents) {
+            System.out.println("queryForStudents : " + theStudent);
+        }
     }
 
     private void readStudent(StudentDAO studentDAO) {
