@@ -26,9 +26,40 @@ public class SpringBootDemoApplication {
 
 //            queryForStudents(studentDAO);
 
-            queryForStudentsByLastName(studentDAO);
+//            queryForStudentsByLastName(studentDAO);
+
+            updateStudent(studentDAO);
+
+
 
         };
+    }
+
+    private void updateStudent(StudentDAO studentDAO) {
+        Student student1 = new Student("Ram", "Rama", "ram@gmail.com");
+        studentDAO.save(student1);
+
+        Student student3 = new Student("Sita 2", "Devi 2", "sita1@gmail.com");
+        studentDAO.save(student3);
+
+        Student student2 = new Student("Ram 2", "Rama 2", "ram2@gmail.com");
+        studentDAO.save(student2);
+
+        Student student4 = new Student("Sita 2", "Devi 2", "sita2@gmail.com");
+        studentDAO.save(student4);
+
+        int studentId = student2.getId();
+
+        System.out.println("Getting student with Id: " + studentId);
+
+        Student student = studentDAO.findById(studentId);
+
+        System.out.println("Updating student...");
+        student.setFirstName("Ramchandra");
+
+        studentDAO.update(student);
+
+        System.out.println("Updated student : " + student);
     }
 
     private void queryForStudentsByLastName(StudentDAO studentDAO) {
