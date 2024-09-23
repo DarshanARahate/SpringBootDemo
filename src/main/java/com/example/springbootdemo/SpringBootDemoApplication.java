@@ -6,8 +6,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import java.util.List;
 
+import java.util.List;
 
 
 @SpringBootApplication
@@ -28,11 +28,26 @@ public class SpringBootDemoApplication {
 
 //            queryForStudentsByLastName(studentDAO);
 
-            updateStudent(studentDAO);
-
-
+//            updateStudent(studentDAO);
+            deleteStudent(studentDAO);
 
         };
+    }
+
+    private void deleteStudent(StudentDAO studentDAO) {
+        Student student1 = new Student("Ram", "Rama", "ram@gmail.com");
+        studentDAO.save(student1);
+
+        Student student3 = new Student("Sita 2", "Devi 2", "sita1@gmail.com");
+        studentDAO.save(student3);
+
+        Student student2 = new Student("Ram 2", "Rama 2", "ram2@gmail.com");
+        studentDAO.save(student2);
+
+        studentDAO.delete(student2.getId());
+
+        System.out.println("Student id: " + student2.getId());
+        System.out.println("Student Deleted");
     }
 
     private void updateStudent(StudentDAO studentDAO) {
@@ -89,7 +104,7 @@ public class SpringBootDemoApplication {
         studentDAO.save(student2);
 
         List<Student> theStudents = studentDAO.findAll();
-        for(Student theStudent: theStudents) {
+        for (Student theStudent : theStudents) {
             System.out.println("queryForStudents : " + theStudent);
         }
     }
