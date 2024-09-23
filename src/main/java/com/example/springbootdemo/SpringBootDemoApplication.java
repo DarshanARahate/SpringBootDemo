@@ -29,9 +29,25 @@ public class SpringBootDemoApplication {
 //            queryForStudentsByLastName(studentDAO);
 
 //            updateStudent(studentDAO);
-            deleteStudent(studentDAO);
-
+//            deleteStudent(studentDAO);
+            deleteAll(studentDAO);
         };
+    }
+
+    private void deleteAll(StudentDAO studentDAO) {
+        Student student1 = new Student("Ram", "Rama", "ram@gmail.com");
+        studentDAO.save(student1);
+
+        Student student3 = new Student("Sita 2", "Devi 2", "sita1@gmail.com");
+        studentDAO.save(student3);
+
+        Student student2 = new Student("Ram 2", "Rama 2", "ram2@gmail.com");
+        studentDAO.save(student2);
+
+        studentDAO.deleteAll();
+
+        System.out.println("Students Deleted");
+
     }
 
     private void deleteStudent(StudentDAO studentDAO) {
